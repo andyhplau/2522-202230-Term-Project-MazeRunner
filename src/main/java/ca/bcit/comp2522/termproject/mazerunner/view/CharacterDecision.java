@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.termproject.mazerunner;
+package ca.bcit.comp2522.termproject.mazerunner.view;
 
 import ca.bcit.comp2522.termproject.mazerunner.model.Character;
 import ca.bcit.comp2522.termproject.mazerunner.view.Game;
