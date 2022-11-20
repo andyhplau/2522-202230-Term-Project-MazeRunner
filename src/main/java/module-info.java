@@ -5,4 +5,6 @@ module ca.bcit.comp2522.termproject.mazerunner {
 
     opens ca.bcit.comp2522.termproject.mazerunner to javafx.fxml;
     exports ca.bcit.comp2522.termproject.mazerunner;
+    exports ca.bcit.comp2522.termproject.mazerunner.model;
+    opens ca.bcit.comp2522.termproject.mazerunner.model to javafx.fxml;
 }
