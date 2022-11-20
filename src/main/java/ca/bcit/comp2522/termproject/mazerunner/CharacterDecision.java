@@ -1,6 +1,10 @@
 package ca.bcit.comp2522.termproject.mazerunner;
 
+import ca.bcit.comp2522.termproject.mazerunner.model.Character;
+import ca.bcit.comp2522.termproject.mazerunner.view.Game;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -24,6 +28,9 @@ import javafx.stage.Stage;
 public class CharacterDecision extends Application {
 
     private static final Font BUTTON_FONT = Font.font(30);
+    Image pokemon = new Image("Pikachu.png", true);
+    ImageView imageView = new ImageView(pokemon);
+    Character player = new Character(imageView);
 
     /*
     Sets up the image buttons.
@@ -78,6 +85,14 @@ public class CharacterDecision extends Application {
         back.setFont(BUTTON_FONT);
         Button start = new Button("Start the Game!");
         start.setFont(BUTTON_FONT);
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Game newGame = new Game();
+                newGame.createNewGame(stage, player);
+            }
+        });
+
         AnchorPane navPane = new AnchorPane(back, start);
         navPane.setStyle("-fx-background-color: lightblue;");
         navPane.setPrefHeight(prefHeight);

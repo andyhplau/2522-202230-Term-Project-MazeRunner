@@ -30,20 +30,20 @@ public class Main extends Application {
      *
      * @param event invoked this method
      */
-    public void processKeyPress(final KeyEvent event) {
-        switch (event.getCode()) {
-            case UP -> player.moveY(-JUMP);
-            case DOWN -> player.moveY(JUMP);
-            case RIGHT -> player.moveX(JUMP);
-            case LEFT -> player.moveX(-JUMP);
-            default -> { }
-        }
-    }
+//    public void processKeyPress(final KeyEvent event) {
+//        switch (event.getCode()) {
+//            case UP -> player.moveY(-JUMP);
+//            case DOWN -> player.moveY(JUMP);
+//            case RIGHT -> player.moveX(JUMP);
+//            case LEFT -> player.moveX(-JUMP);
+//            default -> { }
+//        }
+//    }
 
     @Override
     public void start(final Stage primaryStage) {
         Scene scene = new Scene(root, 600, 600);
-        scene.setOnKeyPressed(this::processKeyPress);
+//        scene.setOnKeyPressed(this::processKeyPress);
         primaryStage.setTitle("Maze Runner");
         primaryStage.setScene(scene);
         primaryStage.show();
