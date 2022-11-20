@@ -27,7 +27,7 @@ public class Timer extends Application {
     private final Timeline timeline = new Timeline();
 
     /**
-     * Represents the timer.
+     * Represents a timer.
      *
      * @param stage a Stage
      */
