@@ -28,9 +28,7 @@ import javafx.stage.Stage;
 public class CharacterDecision extends Application {
 
     private static final Font BUTTON_FONT = Font.font(30);
-    Image pokemon = new Image("Pikachu.png", true);
-    ImageView imageView = new ImageView(pokemon);
-    Character player = new Character(imageView);
+    private String chosenCharacter = "Pikachu";
 
     /*
     Sets up the image buttons.
@@ -68,9 +66,35 @@ public class CharacterDecision extends Application {
 
         // Construct the option pane
         final ToggleGroup characters = new ToggleGroup();
+
         RadioButton pikachuButton = new RadioButton("Pikachu");
+        pikachuButton.setSelected(true);
+        pikachuButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent selectCharacter) {
+                chosenCharacter = "Pikachu";
+            }
+        });
+        pikachuButton.setToggleGroup(characters);
+
         RadioButton squirtleButton = new RadioButton("Squirtle");
+        squirtleButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent selectCharacter) {
+                chosenCharacter = "Squirtle";
+            }
+        });
+        squirtleButton.setToggleGroup(characters);
+
         RadioButton meowthButton = new RadioButton("Meowth");
+        meowthButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent selectCharacter) {
+                chosenCharacter = "Meowth";
+            }
+        });
+        meowthButton.setToggleGroup(characters);
+
         RadioButton userPictureButton;
         setUpImageButton(pikachuButton, "pikachu", characters);
         setUpImageButton(squirtleButton, "squirtle", characters);
@@ -89,7 +113,7 @@ public class CharacterDecision extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Game newGame = new Game();
-                newGame.createNewGame(stage, player);
+                newGame.createNewGame(stage, chosenCharacter);
             }
         });
 
