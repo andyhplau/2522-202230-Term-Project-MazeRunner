@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * Represent the page for user to select their own character.
+ * Represents the page for user to select their own character.
  *
  * @author Andy Lau
  * @version 202230
@@ -25,7 +25,10 @@ public class CharacterDecision extends Application {
 
     private static final Font BUTTON_FONT = Font.font(30);
 
-    private void createImageButton(final RadioButton button, final String pokemon, final ToggleGroup group) {
+    /*
+    Sets up the image buttons.
+     */
+    private void setUpImageButton(final RadioButton button, final String pokemon, final ToggleGroup group) {
         final int height = 150;
         final int width = 150;
         Image image = new Image(pokemon + ".png", width, height, true, true);
@@ -35,37 +38,42 @@ public class CharacterDecision extends Application {
     }
 
     /**
-     * Create the page for character decision.
+     * Creates the page for character decision.
      *
      * @param stage a Stage
      */
     @Override
     public void start(final Stage stage) {
+        // declare the variables for size, spacing, width, height
         final int titleFontSize = 50;
         final int buttonSpacing = 30;
         final int screenWidth = 1920;
         final int screenHeight = 1080;
         final int prefHeight = 100;
         final double anchorSize = 30.0;
+
+        // Construct the title pane
         Text title = new Text("Choose your own Character!");
         title.setFont(Font.font(titleFontSize));
         StackPane titlePane = new StackPane(title);
         titlePane.setStyle("-fx-alignment: center;" + "-fx-background-color: lightblue;");
         titlePane.setPrefHeight(prefHeight);
 
+        // Construct the option pane
         final ToggleGroup characters = new ToggleGroup();
         RadioButton pikachuButton = new RadioButton("Pikachu");
         RadioButton squirtleButton = new RadioButton("Squirtle");
         RadioButton meowthButton = new RadioButton("Meowth");
         RadioButton userPictureButton;
-        createImageButton(pikachuButton, "pikachu", characters);
-        createImageButton(squirtleButton, "squirtle", characters);
-        createImageButton(meowthButton, "meowth", characters);
+        setUpImageButton(pikachuButton, "pikachu", characters);
+        setUpImageButton(squirtleButton, "squirtle", characters);
+        setUpImageButton(meowthButton, "meowth", characters);
         VBox options = new VBox(buttonSpacing);
         options.getChildren().addAll(pikachuButton, squirtleButton, meowthButton);
         options.setStyle("-fx-background-color: lightblue;" + "-fx-alignment: center");
         StackPane optionPane = new StackPane(options);
 
+        // Construct the nav pane
         Button back = new Button("Go Back!");
         back.setFont(BUTTON_FONT);
         Button start = new Button("Start the Game!");
@@ -78,18 +86,23 @@ public class CharacterDecision extends Application {
         AnchorPane.setBottomAnchor(start, anchorSize);
         AnchorPane.setRightAnchor(start, anchorSize);
 
+        // Construct the border pane - root
         BorderPane root = new BorderPane();
         root.setTop(titlePane);
         root.setCenter(optionPane);
         root.setBottom(navPane);
+
+        // Setup the scene
         Scene scene = new Scene(root, screenWidth, screenHeight);
+
+        // Setup the stage
         stage.setScene(scene);
         stage.setTitle("Maze Runner");
         stage.show();
     }
 
     /**
-     * Launch the JavaFX application.
+     * Launches the JavaFX application.
      *
      * @param args command line arguments
      */
