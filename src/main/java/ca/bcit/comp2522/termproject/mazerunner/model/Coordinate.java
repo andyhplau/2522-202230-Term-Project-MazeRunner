@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Coordinate {
     private final int xCoordinate;
     private final int yCoordinate;
-    private final boolean accessible;
+    private boolean accessible;
 
     /**
      * Constructs a Coordinate object in the map.
@@ -51,6 +51,15 @@ public class Coordinate {
      */
     public boolean isAccessible() {
         return accessible;
+    }
+
+    /**
+     * Updates the accessible value.
+     *
+     * @param accessible a boolean that represents if this coordinate is accessible for the character
+     */
+    public void setAccessible(final boolean accessible) {
+        this.accessible = accessible;
     }
 
     /**
