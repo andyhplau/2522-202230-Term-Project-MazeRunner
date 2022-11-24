@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 /**
  * Represents the page for user to select their own character.
  *
- * @author Andy Lau
+ * @author Andy & Soo
  * @version 202230
  */
 public class CharacterDecision extends Application {
