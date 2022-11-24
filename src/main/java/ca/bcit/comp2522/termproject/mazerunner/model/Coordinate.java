@@ -14,7 +14,7 @@ public class Coordinate {
     private final boolean accessible;
 
     /**
-     * Constructs a coordinate in the map.
+     * Constructs a Coordinate object in the map.
      *
      * @param xCoordinate an int that represents the x-coordinate
      * @param yCoordinate an int that represents the y-coordinate
