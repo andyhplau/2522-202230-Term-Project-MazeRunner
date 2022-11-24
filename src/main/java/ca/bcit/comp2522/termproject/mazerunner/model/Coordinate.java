@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.termproject.mazerunner.model;
 
+import java.util.Objects;
+
 /**
  * Represents a coordinate in the map.
  *
@@ -49,5 +51,55 @@ public class Coordinate {
      */
     public boolean isAccessible() {
         return accessible;
+    }
+
+    /**
+     * Compare an object with an AdditionOperation object.
+     *
+     * @param obj an object
+     * @return true if they are the same, else false
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj.getClass() == this.getClass())) {
+            return false;
+        }
+        Coordinate other = (Coordinate) obj;
+        return xCoordinate == other.xCoordinate && yCoordinate == other.yCoordinate && accessible == other.accessible;
+    }
+
+    /**
+     * Returns a hashCode for this instance of the Coordinate class.
+     *
+     * @return HashCode as an int
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 17;
+        final int hashValue = 37;
+        int result = prime;
+        result = hashValue * result + xCoordinate;
+        result = hashValue * result + yCoordinate;
+        result = hashValue * result + Objects.hashCode(accessible);
+        return result;
+    }
+
+    /**
+     * Returns a String representation of this Coordinate object.
+     *
+     * @return description of this Coordinate object
+     */
+    @Override
+    public String toString() {
+        return "Coordinate{"
+                + "xCoordinate=" + xCoordinate
+                + ", yCoordinate=" + yCoordinate
+                + ", accessible=" + accessible + '}';
     }
 }
