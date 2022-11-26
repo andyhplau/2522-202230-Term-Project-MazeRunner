@@ -71,4 +71,63 @@ public class Character extends Group {
             }
         }
     }
+
+    /**
+     * Compare an object with an AdditionOperation object.
+     *
+     * @param o an object
+     * @return true if they are the same, else false
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Character character = (Character) o;
+
+        if (offsetX != character.offsetX) {
+            return false;
+        }
+        if (offsetY != character.offsetY) {
+            return false;
+        }
+        if (width != character.width) {
+            return false;
+        }
+        if (height != character.height) {
+            return false;
+        }
+        return appWidthHeight == character.appWidthHeight;
+    }
+
+    /**
+     * Returns a hashCode for this instance of the character class.
+     *
+     * @return HashCode as an int
+     */
+    @Override
+    public int hashCode() {
+        final int hashValue = 32;
+        int result = offsetX;
+        result = hashValue * result + offsetY;
+        result = hashValue * result + width;
+        result = hashValue * result + height;
+        result = hashValue * result + appWidthHeight;
+        return result;
+    }
+
+    /**
+     * Returns a String representation of this character object.
+     *
+     * @return description of this character object
+     */
+    @Override
+    public String toString() {
+        return "Character{" + "offsetX=" + offsetX + ", offsetY=" + offsetY + ", width=" + width + ", height="
+                + height + ", appWidthHeight=" + appWidthHeight + '}';
+    }
 }
