@@ -25,8 +25,8 @@ public class Game {
     private ImageView imageView;
     private Character player;
 
-    private  final int appWidth = 600;
-    private  final int appHeight = 600;
+    private  final int appWidth = 1000;
+    private  final int appHeight = 1000;
 
     private Stage selectionStage;
 
