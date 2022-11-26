@@ -40,7 +40,7 @@ public class Coordinate {
      *
      * @return yCoordinate as an int
      */
-    public int getyYCoordinate() {
+    public int getYCoordinate() {
         return yCoordinate;
     }
 
