@@ -14,18 +14,21 @@ public class Character extends Group {
     private final int offsetY = 0;
     private final int width = 50;
     private final int height = 50;
-    private final int appWidthHeight = 600;
+    private final int appWidth;
+    private final int appHeight;
 
     /**
      * Constructs the character with passed image.
      *
      * @param imageView image file user will use
      */
-    public Character(final ImageView imageView) {
+    public Character(final ImageView imageView, final int newWidth, final int newHeight) {
         imageView.setX(offsetX);
         imageView.setY(offsetY);
         imageView.setFitHeight(height);
         imageView.setFitWidth(width);
+        this.appWidth = newWidth;
+        this.appHeight = newHeight;
 
         getChildren().addAll(imageView);
     }
@@ -40,7 +43,7 @@ public class Character extends Group {
         boolean right = x > 0;
         for (int i = 0; i < Math.abs(x); i++) {
             if (right) {
-                if (getTranslateX() < appWidthHeight - offsetX - width) {
+                if (getTranslateX() < appWidth - offsetX - width) {
                     this.setTranslateX(this.getTranslateX() + 1);
                 }
             } else {
@@ -48,6 +51,7 @@ public class Character extends Group {
                     this.setTranslateX(this.getTranslateX() - 1);
                 }
             }
+            System.out.println(getTranslateX()+ "," + getTranslateY());
         }
     }
 
@@ -61,7 +65,7 @@ public class Character extends Group {
         boolean right = y > 0;
         for (int i = 0; i < Math.abs(y); i++) {
             if (right) {
-                if (getTranslateY() < appWidthHeight - offsetY - height) {
+                if (getTranslateY() < appHeight - offsetY - height) {
                     this.setTranslateY(this.getTranslateY() + 1);
                 }
             } else {
@@ -69,65 +73,8 @@ public class Character extends Group {
                     this.setTranslateY(this.getTranslateY() - 1);
                 }
             }
+            System.out.println(getTranslateX() + "," + getTranslateY());
         }
     }
 
-    /**
-     * Compare an object with an AdditionOperation object.
-     *
-     * @param o an object
-     * @return true if they are the same, else false
-     */
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Character character = (Character) o;
-
-        if (offsetX != character.offsetX) {
-            return false;
-        }
-        if (offsetY != character.offsetY) {
-            return false;
-        }
-        if (width != character.width) {
-            return false;
-        }
-        if (height != character.height) {
-            return false;
-        }
-        return appWidthHeight == character.appWidthHeight;
-    }
-
-    /**
-     * Returns a hashCode for this instance of the character class.
-     *
-     * @return HashCode as an int
-     */
-    @Override
-    public int hashCode() {
-        final int hashValue = 32;
-        int result = offsetX;
-        result = hashValue * result + offsetY;
-        result = hashValue * result + width;
-        result = hashValue * result + height;
-        result = hashValue * result + appWidthHeight;
-        return result;
-    }
-
-    /**
-     * Returns a String representation of this character object.
-     *
-     * @return description of this character object
-     */
-    @Override
-    public String toString() {
-        return "Character{" + "offsetX=" + offsetX + ", offsetY=" + offsetY + ", width=" + width + ", height="
-                + height + ", appWidthHeight=" + appWidthHeight + '}';
-    }
 }
