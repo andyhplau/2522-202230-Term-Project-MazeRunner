@@ -3,13 +3,18 @@ package ca.bcit.comp2522.termproject.mazerunner.model;
 import java.util.ArrayList;
 import javafx.scene.Group;
 
+/**
+ * Create Map to let user play the game.
+ *
+ * @author Andy & Soo
+ * @version 2022
+ */
 public class Map extends Group {
     private final int xSize;
     private final int ySize;
-     final int boxSize = Coordinate.COORDINATE_WIDTH;
-
+    private final int boxSize = Coordinate.COORDINATE_WIDTH;
     private final ArrayList<Coordinate> coordinates = new ArrayList<>();
-    private final ArrayList<Destination> destinations = new ArrayList<Destination>();
+    private final ArrayList<Destination> destinations = new ArrayList<>();
 
     /**
      * Constructs the map.
@@ -63,6 +68,12 @@ public class Map extends Group {
         }
     }
 
+    /**
+     * Sets (xCoordinate, yCoordinate) as a path by changing accessibility.
+     *
+     * @param xCoordinate x coordinate of path as an int
+     * @param yCoordinate y coordinate of path as an int
+     */
     public void setPath(final int xCoordinate, final int yCoordinate) {
         for (Coordinate coordinate : coordinates) {
             if (coordinate.getXCoordinate() == xCoordinate * boxSize
@@ -72,6 +83,13 @@ public class Map extends Group {
         }
     }
 
+    /**
+     * Sets (xCoordinate, yCoordinate) as a destination.
+     *
+     * @param xCoordinate x coordinate of path as an int
+     * @param yCoordinate y coordinate of path as an int
+     * @param number the name(number) of destination's image
+     */
     public void setDestination(final int xCoordinate, final int yCoordinate, final String number) {
         Destination thisDestination =
                 new Destination(xCoordinate * boxSize, yCoordinate * boxSize, number);
@@ -79,6 +97,14 @@ public class Map extends Group {
         getChildren().add(thisDestination.getNumView());
     }
 
+    /**
+     * Checks if (xCoordinate, yCoordinate) is path or block.
+     *
+     * @param xCoordinate x coordinate of path as an int
+     * @param yCoordinate y coordinate of path as an int
+     *
+     * @return accessibility of this coordinate
+     */
     public boolean findAccessibility(final double xCoordinate, final double yCoordinate) {
         boolean accessibility = false;
         int newXCoordinate = (int) (xCoordinate / boxSize) * boxSize;
