@@ -2,11 +2,14 @@ package ca.bcit.comp2522.termproject.mazerunner.view;
 
 import ca.bcit.comp2522.termproject.mazerunner.model.Character;
 import ca.bcit.comp2522.termproject.mazerunner.model.Map;
+import ca.bcit.comp2522.termproject.mazerunner.model.Timer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -20,7 +23,9 @@ public class Game {
      * Distance in pixels that the alien moves when a key is pressed.
      */
     public static final int JUMP = 5;
-    private Group root;
+    private Timer timer;
+    private Group mapPane;
+    private BorderPane root;
     private Stage gameStage;
     private Image pokemon;
     private ImageView imageView;
@@ -54,8 +59,8 @@ public class Game {
     }
 
     private void drawMap() {
-       int[] [] path = {
-               {4, 1}, {5, 1}, {6, 1}, {7, 1}, {8, 1}, {9, 1}, {10, 1}, {11, 1}, {12, 1}, {13, 1}, {14, 1}, {15, 1}, {17, 1}, {18, 1},
+       final int[][] path = {
+               {4, 1}, {5, 1}, {6, 1}, {7, 1}, {8, 1}, {9, 1}, {10, 1}, {11, 1}, {12, 1}, {13, 1}, {14, 1}, {15, 1},{17, 1}, {18, 1},
                {1, 2}, {2, 2}, {3, 2}, {4, 2}, {7, 2}, {11, 2}, {13, 2}, {15, 2}, {18, 2},
                {4, 3}, {6, 3}, {7, 3}, {9, 3}, {10, 3}, {11, 3}, {13, 3}, {15, 3}, {16, 3}, {18, 3}, {19, 3},
                {1, 4}, {2, 4}, {3, 4}, {4, 4}, {6, 4}, {9, 4}, {13, 4}, {16, 4}, {18, 4},
@@ -82,6 +87,13 @@ public class Game {
     }
 
     /**
+     * Starts the timer.
+     */
+    public void startCountTime() {
+        timer.startCount();
+    }
+
+    /**
      * Shows game stage with instantiate the character.
      * @param selectionStage the original stage which will be hided
      * @param pokemonName name of character user chose
@@ -93,7 +105,7 @@ public class Game {
         this.imageView = new ImageView(pokemon);
         this.player = new Character(imageView, appWidth, appHeight);
         this.map = new Map(appWidth, appHeight);
-        root.getChildren().addAll(player, map);
+        mapPane.getChildren().addAll(player, map);
         drawMap();
         gameStage.show();
     }
@@ -102,7 +114,11 @@ public class Game {
      * Initiates game stage.
      */
     public void initiateStage() {
-        root = new Group();
+        timer = new Timer(5);
+        mapPane = new Group();
+        root = new BorderPane();
+        root.setTop(timer.getTimerPane());
+        root.setCenter(mapPane);
         Scene gameScene = new Scene(root, appWidth, appHeight);
         gameScene.setOnKeyPressed(this::processKeyPress);
         gameStage = new Stage();

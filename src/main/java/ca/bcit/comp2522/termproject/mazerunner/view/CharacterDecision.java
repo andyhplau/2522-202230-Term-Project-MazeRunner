@@ -114,6 +114,7 @@ public class CharacterDecision extends Application {
             public void handle(ActionEvent actionEvent) {
                 Game newGame = new Game();
                 newGame.createNewGame(stage, chosenCharacter);
+                newGame.startCountTime();
             }
         });
 
