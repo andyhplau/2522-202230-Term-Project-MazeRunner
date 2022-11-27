@@ -10,10 +10,15 @@ import javafx.scene.image.ImageView;
  * @version 2022
  */
 public class Character extends Group {
-    private final int offsetX = 0;
-    private final int offsetY = 0;
+    // Starting point of the character
+    private final int offsetX = 50;
+    private final int offsetY = 100;
+
+    // Size of the character
     private final int width = 50;
     private final int height = 50;
+
+    // Size of application
     private final int appWidth;
     private final int appHeight;
 
@@ -49,7 +54,7 @@ public class Character extends Group {
                     this.setTranslateX(this.getTranslateX() + 1);
                 }
             } else {
-                if (getTranslateX() > 0) {
+                if (getTranslateX() > -offsetX) {
                     this.setTranslateX(this.getTranslateX() - 1);
                 }
             }
@@ -71,7 +76,7 @@ public class Character extends Group {
                     this.setTranslateY(this.getTranslateY() + 1);
                 }
             } else {
-                if (getTranslateY() > 0) {
+                if (getTranslateY() > -offsetY) {
                     this.setTranslateY(this.getTranslateY() - 1);
                 }
             }

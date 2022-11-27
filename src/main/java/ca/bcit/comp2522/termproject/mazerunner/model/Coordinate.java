@@ -27,9 +27,9 @@ public class Coordinate extends Group {
     /**
      * Represents if the Coordinate object is accessible for the character.
      */
-    protected boolean accessible = true;
+    protected boolean accessible = false;
 
-    private final Image block = new Image("Brick_Block.png", true);
+    private final Image block = new Image("Brick_Block.png",false);
     private final ImageView blockView = new ImageView(block);
 
     /**
@@ -42,11 +42,10 @@ public class Coordinate extends Group {
         this.xCoordinate = xCoordinate * COORDINATE_WIDTH;
         this.yCoordinate = yCoordinate * COORDINATE_WIDTH;
 
-        blockView.setFitWidth(COORDINATE_WIDTH);
-        blockView.setFitHeight(COORDINATE_WIDTH);
         blockView.setX(this.xCoordinate);
         blockView.setY(this.yCoordinate);
-        blockView.setVisible(false);
+        blockView.setFitWidth(COORDINATE_WIDTH);
+        blockView.setFitHeight(COORDINATE_WIDTH);
     }
 
     /**
@@ -93,6 +92,7 @@ public class Coordinate extends Group {
     public void setAccessible(final boolean accessible) {
         this.accessible = accessible;
         blockView.setVisible(!accessible);
+        System.out.println(getXCoordinate() + ", " + getYCoordinate());
     }
 
     /**

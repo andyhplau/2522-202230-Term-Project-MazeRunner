@@ -63,10 +63,10 @@ public class Map extends Group {
         }
     }
 
-    public void setObstacle(final int xCoordinate, final int yCoordinate) {
+    public void setPath(final int xCoordinate, final int yCoordinate) {
         for (Coordinate coordinate : Coordinates) {
             if (coordinate.getXCoordinate() == xCoordinate && coordinate.getYCoordinate() == yCoordinate) {
-                coordinate.setAccessible(false);
+                coordinate.setAccessible(true);
             }
         }
     }
