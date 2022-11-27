@@ -29,7 +29,7 @@ public class Coordinate extends Group {
      */
     protected boolean accessible = false;
 
-    private final Image block = new Image("Brick_Block.png",false);
+    private final Image block = new Image("Brick_Block.png", false);
     private final ImageView blockView = new ImageView(block);
 
     /**
