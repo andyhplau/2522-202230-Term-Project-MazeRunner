@@ -16,10 +16,9 @@ public class Destination extends Coordinate {
      *
      * @param xCoordinate an int that represents the x-coordinate
      * @param yCoordinate an int that represents the y-coordinate
-     * @param accessible  a boolean that represents if this coordinate is accessible for the character
      */
-    public Destination(final int xCoordinate, final int yCoordinate, final boolean accessible) {
-        super(xCoordinate, yCoordinate, accessible);
+    public Destination(final int xCoordinate, final int yCoordinate) {
+        super(xCoordinate, yCoordinate);
         this.chosen = false;
     }
 
