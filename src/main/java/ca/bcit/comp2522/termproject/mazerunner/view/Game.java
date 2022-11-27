@@ -33,7 +33,7 @@ public class Game {
     private Map map;
 
     private  final int appWidth = 1000;
-    private  final int appHeight = 1000;
+    private  final int appHeight = 1100;
 
     private Stage selectionStage;
 

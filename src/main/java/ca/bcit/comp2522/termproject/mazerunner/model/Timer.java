@@ -72,6 +72,7 @@ public class Timer {
         timeText.setText("Time Left: " + time + " sec");
         timeText.setFont(TIMER_FONT_SIZE);
         timerPane.setStyle("-fx-alignment: center;" + "-fx-background-color: lightblue;");
+        timerPane.setPrefHeight(100);
     }
 
     /**

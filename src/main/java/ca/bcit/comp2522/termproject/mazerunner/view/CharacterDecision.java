@@ -52,8 +52,8 @@ public class CharacterDecision extends Application {
         // declare the variables for size, spacing, width, height
         final int titleFontSize = 50;
         final int buttonSpacing = 30;
-        final int screenWidth = 1920;
-        final int screenHeight = 1080;
+        final int screenWidth = 1000;
+        final int screenHeight = 1100;
         final int prefHeight = 100;
         final double anchorSize = 30.0;
 
