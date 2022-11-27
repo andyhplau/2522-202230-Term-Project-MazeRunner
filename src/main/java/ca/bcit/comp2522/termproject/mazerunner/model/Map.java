@@ -6,7 +6,7 @@ import javafx.scene.Group;
 public class Map extends Group {
     private final int xSize;
     private final int ySize;
-    private final int boxSize = 50;
+    private final int boxSize = 30;
 
     private final ArrayList<Coordinate> Coordinates = new ArrayList<>();
     private final ArrayList<Destination> Destinations = new ArrayList<Destination>();
@@ -65,10 +65,18 @@ public class Map extends Group {
 
     public void setPath(final int xCoordinate, final int yCoordinate) {
         for (Coordinate coordinate : Coordinates) {
-            if (coordinate.getXCoordinate() == xCoordinate && coordinate.getYCoordinate() == yCoordinate) {
+            if (coordinate.getXCoordinate() == xCoordinate * boxSize
+                    && coordinate.getYCoordinate() == yCoordinate * boxSize) {
                 coordinate.setAccessible(true);
             }
         }
+    }
+
+    public void setDestination(final int xCoordinate, final int yCoordinate, final String number) {
+        Destination thisDestination =
+                new Destination(xCoordinate * boxSize, yCoordinate * boxSize, number);
+        Destinations.add(thisDestination);
+        getChildren().add(thisDestination.getNumView());
     }
 
     public boolean findAccessibility(final int xCoordinate, final int yCoordinate) {

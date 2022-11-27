@@ -32,8 +32,8 @@ public class Game {
     private Character player;
     private Map map;
 
-    private  final int appWidth = 1000;
-    private  final int appHeight = 1100;
+    private  final int appWidth = 600;
+    private  final int appHeight = 600;
 
     private Stage selectionStage;
 
@@ -59,6 +59,7 @@ public class Game {
     }
 
     private void drawMap() {
+        // all coordinates of path
        final int[][] path = {
                {4, 1}, {5, 1}, {6, 1}, {7, 1}, {8, 1}, {9, 1}, {10, 1}, {11, 1}, {12, 1}, {13, 1}, {14, 1}, {15, 1},{17, 1}, {18, 1},
                {1, 2}, {2, 2}, {3, 2}, {4, 2}, {7, 2}, {11, 2}, {13, 2}, {15, 2}, {18, 2},
@@ -80,10 +81,15 @@ public class Game {
                {2, 18}, {3, 18}, {4, 18}, {5, 18}, {6, 18}, {7, 18}, {9, 18}, {10, 18}, {11, 18}, {12, 18}, {13, 18},{14, 18}, {15, 18}, {16, 18}, {18, 18}, {19, 18}
        };
 
-        for (int i = 0; i < path.length; i++) {
-            map.setPath(path[i][0]*50, path[i][1]*50);
+       // Draw path
+        for (int[] ints : path) {
+            map.setPath(ints[0], ints[1]);
         }
 
+        // Set three destinations
+        map.setDestination(19,3, "one");
+        map.setDestination(10,10, "two");
+        map.setDestination(7,17, "three");
     }
 
     /**
@@ -119,7 +125,7 @@ public class Game {
         root = new BorderPane();
         root.setTop(timer.getTimerPane());
         root.setCenter(mapPane);
-        Scene gameScene = new Scene(root, appWidth, appHeight);
+        Scene gameScene = new Scene(root, appWidth, appHeight+100);
         gameScene.setOnKeyPressed(this::processKeyPress);
         gameStage = new Stage();
         gameStage.setTitle("Maze Runner");

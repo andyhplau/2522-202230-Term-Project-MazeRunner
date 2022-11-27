@@ -15,7 +15,7 @@ public class Coordinate extends Group {
     /**
      * A constant width for a coordinate.
      */
-    public static final int COORDINATE_WIDTH = 50;
+    public static final int COORDINATE_WIDTH = 30;
     /**
      * Represents an x-coordinate in the map.
      */

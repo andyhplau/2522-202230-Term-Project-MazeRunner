@@ -1,6 +1,10 @@
 package ca.bcit.comp2522.termproject.mazerunner.model;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.util.Objects;
+
 
 /**
  * Represents a destination in a map.
@@ -9,7 +13,10 @@ import java.util.Objects;
  * @version 202230
  */
 public class Destination extends Coordinate {
+
     private boolean chosen;
+    private final Image num;
+    private final ImageView numView;
 
     /**
      * Constructs a Destination object in the map.
@@ -17,9 +24,24 @@ public class Destination extends Coordinate {
      * @param xCoordinate an int that represents the x-coordinate
      * @param yCoordinate an int that represents the y-coordinate
      */
-    public Destination(final int xCoordinate, final int yCoordinate) {
+    public Destination(final int xCoordinate, final int yCoordinate, final String number) {
         super(xCoordinate, yCoordinate);
         this.chosen = false;
+        num  = new Image(number + ".png",true);
+        numView = new ImageView(num);
+        numView.setFitWidth(30);
+        numView.setFitHeight(30);
+        numView.setX(xCoordinate);
+        numView.setY(yCoordinate);
+    }
+
+    /**
+     * Returns if the imageView of this destination.
+     *
+     * @return numView as an imageView
+     */
+    public ImageView getNumView() {
+        return numView;
     }
 
     /**

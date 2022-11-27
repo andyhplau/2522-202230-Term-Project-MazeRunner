@@ -11,12 +11,12 @@ import javafx.scene.image.ImageView;
  */
 public class Character extends Group {
     // Starting point of the character
-    private final int offsetX = 50;
-    private final int offsetY = 100;
+    private final int offsetX = 30;
+    private final int offsetY = 60;
 
     // Size of the character
-    private final int width = 50;
-    private final int height = 50;
+    private final int width = 30;
+    private final int height = 30;
 
     // Size of application
     private final int appWidth;
