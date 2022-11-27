@@ -24,19 +24,17 @@ public class Coordinate {
     /**
      * Represents if the Coordinate object is accessible for the character.
      */
-    protected boolean accessible;
+    protected boolean accessible = true;
 
     /**
      * Constructs a Coordinate object in the map.
      *
      * @param xCoordinate an int that represents the x-coordinate
      * @param yCoordinate an int that represents the y-coordinate
-     * @param accessible a boolean that represents if this coordinate is accessible for the character
      */
-    public Coordinate(final int xCoordinate, final int yCoordinate, final boolean accessible) {
+    public Coordinate(final int xCoordinate, final int yCoordinate) {
         this.xCoordinate = xCoordinate * COORDINATE_WIDTH;
         this.yCoordinate = yCoordinate * COORDINATE_WIDTH;
-        this.accessible = accessible;
     }
 
     /**
