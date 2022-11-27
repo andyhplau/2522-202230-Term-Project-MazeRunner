@@ -55,13 +55,13 @@ public class Character extends Group {
             if (right) {
                 if (getTranslateX() < appWidth - offsetX - width
                         && map.findAccessibility(getTranslateX() + width + offsetX, getTranslateY() + offsetY)
-                        && getTranslateY() % map.getBoxSize() == 0) {
+                        && getTranslateY() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateX(this.getTranslateX() + 1);
                 }
             } else {
                 if (getTranslateX() > -offsetX
                         && map.findAccessibility(getTranslateX() + offsetX - 1, getTranslateY() + offsetY)
-                        && getTranslateY() % map.getBoxSize() == 0) {
+                        && getTranslateY() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateX(this.getTranslateX() - 1);
                 }
             }
@@ -80,13 +80,13 @@ public class Character extends Group {
             if (up) {
                 if (getTranslateY() < appHeight - offsetY - height
                         && map.findAccessibility(getTranslateX() + offsetX, getTranslateY() + offsetY + height)
-                        && getTranslateX() % map.getBoxSize() == 0) {
+                        && getTranslateX() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateY(this.getTranslateY() + 1);
                 }
             } else {
                 if (getTranslateY() > -offsetY
                         && map.findAccessibility(getTranslateX() + offsetX, getTranslateY() + offsetY - 1)
-                        && getTranslateX() % map.getBoxSize() == 0) {
+                        && getTranslateX() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateY(this.getTranslateY() - 1);
                 }
             }

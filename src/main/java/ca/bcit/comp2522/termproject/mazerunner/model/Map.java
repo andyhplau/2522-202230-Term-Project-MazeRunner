@@ -6,7 +6,7 @@ import javafx.scene.Group;
 public class Map extends Group {
     private final int xSize;
     private final int ySize;
-    private final int boxSize = 30;
+     final int boxSize = Coordinate.COORDINATE_WIDTH;
 
     private final ArrayList<Coordinate> coordinates = new ArrayList<>();
     private final ArrayList<Destination> destinations = new ArrayList<Destination>();
@@ -48,15 +48,6 @@ public class Map extends Group {
      */
     public int getYSize() {
         return ySize;
-    }
-
-    /**
-     * Returns the one box size.
-     *
-     * @return boxSize as an int
-     */
-    public int getBoxSize() {
-        return boxSize;
     }
 
     private void populateCoordinate() {
