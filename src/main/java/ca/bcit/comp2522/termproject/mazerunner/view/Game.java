@@ -110,8 +110,8 @@ public class Game {
         this.selectionStage.hide();
         this.pokemon = new Image(pokemonName + ".png", true);
         this.imageView = new ImageView(pokemon);
-        this.player = new Character(imageView, appWidth, appHeight);
         this.map = new Map(appWidth, appHeight);
+        this.player = new Character(imageView, appWidth, appHeight, this.map);
         mapPane.getChildren().addAll(player, map);
         drawMap();
         gameStage.show();

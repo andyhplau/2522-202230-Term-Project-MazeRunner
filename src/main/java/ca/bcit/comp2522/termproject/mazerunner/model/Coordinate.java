@@ -92,7 +92,6 @@ public class Coordinate extends Group {
     public void setAccessible(final boolean accessible) {
         this.accessible = accessible;
         blockView.setVisible(!accessible);
-        System.out.println(getXCoordinate() + ", " + getYCoordinate());
     }
 
     /**

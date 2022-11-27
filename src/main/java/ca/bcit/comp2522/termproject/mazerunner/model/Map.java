@@ -8,8 +8,8 @@ public class Map extends Group {
     private final int ySize;
     private final int boxSize = 30;
 
-    private final ArrayList<Coordinate> Coordinates = new ArrayList<>();
-    private final ArrayList<Destination> Destinations = new ArrayList<Destination>();
+    private final ArrayList<Coordinate> coordinates = new ArrayList<>();
+    private final ArrayList<Destination> destinations = new ArrayList<Destination>();
 
     /**
      * Constructs the map.
@@ -29,7 +29,7 @@ public class Map extends Group {
      * @return destinations as an arraylist
      */
     public ArrayList<Destination> getDestinations() {
-        return Destinations;
+        return destinations;
     }
 
     /**
@@ -50,6 +50,15 @@ public class Map extends Group {
         return ySize;
     }
 
+    /**
+     * Returns the one box size.
+     *
+     * @return boxSize as an int
+     */
+    public int getBoxSize() {
+        return boxSize;
+    }
+
     private void populateCoordinate() {
         int numOfBoxInX = xSize / boxSize;
         int numOfBoxInY = ySize / boxSize;
@@ -57,14 +66,14 @@ public class Map extends Group {
         for (int i = 0; i < numOfBoxInY; i++) {
             for (int j = 0; j < numOfBoxInX; j++) {
                 Coordinate coordinate = new Coordinate(j, i);
-                Coordinates.add(coordinate);
+                coordinates.add(coordinate);
                 getChildren().add(coordinate.getBlockView());
             }
         }
     }
 
     public void setPath(final int xCoordinate, final int yCoordinate) {
-        for (Coordinate coordinate : Coordinates) {
+        for (Coordinate coordinate : coordinates) {
             if (coordinate.getXCoordinate() == xCoordinate * boxSize
                     && coordinate.getYCoordinate() == yCoordinate * boxSize) {
                 coordinate.setAccessible(true);
@@ -75,14 +84,16 @@ public class Map extends Group {
     public void setDestination(final int xCoordinate, final int yCoordinate, final String number) {
         Destination thisDestination =
                 new Destination(xCoordinate * boxSize, yCoordinate * boxSize, number);
-        Destinations.add(thisDestination);
+        destinations.add(thisDestination);
         getChildren().add(thisDestination.getNumView());
     }
 
-    public boolean findAccessibility(final int xCoordinate, final int yCoordinate) {
+    public boolean findAccessibility(final double xCoordinate, final double yCoordinate) {
         boolean accessibility = false;
-        for (Coordinate coordinate : Coordinates) {
-            if (coordinate.getXCoordinate() == xCoordinate && coordinate.getYCoordinate() == yCoordinate) {
+        int newXCoordinate = (int) (xCoordinate / boxSize) * boxSize;
+        int newYCoordinate = (int) (yCoordinate / boxSize) * boxSize;
+        for (Coordinate coordinate : coordinates) {
+            if (coordinate.getXCoordinate() == newXCoordinate && coordinate.getYCoordinate() == newYCoordinate) {
                 accessibility = coordinate.isAccessible();
             }
         }
