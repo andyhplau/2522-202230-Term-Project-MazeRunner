@@ -32,8 +32,8 @@ public class Game {
     private Character player;
     private Map map;
 
-    private  final int appWidth = 600;
-    private  final int appHeight = 600;
+    private final int appWidth = 600;
+    private final int appHeight = 600;
 
     private Stage selectionStage;
 
@@ -97,6 +97,7 @@ public class Game {
      */
     public void startCountTime() {
         timer.startCount();
+        timer.setStage(gameStage);
     }
 
     /**

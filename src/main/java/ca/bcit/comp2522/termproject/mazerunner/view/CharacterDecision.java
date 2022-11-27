@@ -111,7 +111,7 @@ public class CharacterDecision extends Application {
         start.setFont(BUTTON_FONT);
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(final ActionEvent actionEvent) {
                 Game newGame = new Game();
                 newGame.createNewGame(stage, chosenCharacter);
                 newGame.startCountTime();

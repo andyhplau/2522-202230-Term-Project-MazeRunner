@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.mazerunner.model;
 
+import ca.bcit.comp2522.termproject.mazerunner.view.GameOver;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -7,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.Objects;
@@ -21,6 +23,7 @@ public class Timer {
 
     private static final Font TIMER_FONT_SIZE = Font.font(30);
     private int time;
+    private Stage gameStage;
     private final Text timeText;
     private final Timeline timeline;
     private final StackPane timerPane;
@@ -65,6 +68,10 @@ public class Timer {
         this.time = time;
     }
 
+    public void setStage(final Stage gameStage) {
+        this.gameStage = gameStage;
+    }
+
     /**
      * Sets up the TimerPane.
      */
@@ -97,7 +104,8 @@ public class Timer {
             timeText.setText("Time Left: " + time + " sec");
             if (time <= 0) {
                 timeline.stop();
-                // end the game and the player lose
+                GameOver gameOver = new GameOver();
+                gameOver.gameIsOver(gameStage);
             }
         }
     }
