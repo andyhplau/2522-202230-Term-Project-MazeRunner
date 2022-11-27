@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  */
 public class CharacterDecision extends Application {
 
-    private static final Font BUTTON_FONT = Font.font(30);
+    private static final Font BUTTON_FONT = Font.font(20);
     private String chosenCharacter = "Pikachu";
 
     /*
@@ -50,11 +50,11 @@ public class CharacterDecision extends Application {
     @Override
     public void start(final Stage stage) {
         // declare the variables for size, spacing, width, height
-        final int titleFontSize = 50;
+        final int titleFontSize = 30;
         final int buttonSpacing = 30;
-        final int screenWidth = 1000;
-        final int screenHeight = 1100;
-        final int prefHeight = 100;
+        final int screenWidth = 600;
+        final int screenHeight = 650;
+        final int prefHeight = 50;
         final double anchorSize = 30.0;
 
         // Construct the title pane

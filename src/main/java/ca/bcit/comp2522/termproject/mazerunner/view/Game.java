@@ -125,7 +125,7 @@ public class Game {
         root = new BorderPane();
         root.setTop(timer.getTimerPane());
         root.setCenter(mapPane);
-        Scene gameScene = new Scene(root, appWidth, appHeight+100);
+        Scene gameScene = new Scene(root, appWidth, appHeight+50);
         gameScene.setOnKeyPressed(this::processKeyPress);
         gameStage = new Stage();
         gameStage.setTitle("Maze Runner");

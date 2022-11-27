@@ -19,7 +19,7 @@ import java.util.Objects;
  */
 public class Timer {
 
-    private static final Font TIMER_FONT_SIZE = Font.font(50);
+    private static final Font TIMER_FONT_SIZE = Font.font(30);
     private int time;
     private final Text timeText;
     private final Timeline timeline;
@@ -72,7 +72,7 @@ public class Timer {
         timeText.setText("Time Left: " + time + " sec");
         timeText.setFont(TIMER_FONT_SIZE);
         timerPane.setStyle("-fx-alignment: center;" + "-fx-background-color: lightblue;");
-        timerPane.setPrefHeight(100);
+        timerPane.setPrefHeight(50);
     }
 
     /**
