@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Destination extends Coordinate {
 
     private boolean chosen;
-    private final Image num;
     private final ImageView numView;
 
     /**
@@ -23,14 +22,15 @@ public class Destination extends Coordinate {
      *
      * @param xCoordinate an int that represents the x-coordinate
      * @param yCoordinate an int that represents the y-coordinate
+     * @param number a name/number of destination which represents a title of image
      */
     public Destination(final int xCoordinate, final int yCoordinate, final String number) {
         super(xCoordinate, yCoordinate);
         this.chosen = false;
-        num  = new Image(number + ".png",true);
+        Image num = new Image(number + ".png", true);
         numView = new ImageView(num);
-        numView.setFitWidth(30);
-        numView.setFitHeight(30);
+        numView.setFitWidth(Coordinate.COORDINATE_WIDTH);
+        numView.setFitHeight(Coordinate.COORDINATE_WIDTH);
         numView.setX(xCoordinate);
         numView.setY(yCoordinate);
     }
