@@ -21,6 +21,8 @@ public class Character extends Group {
      * Constructs the character with passed image.
      *
      * @param imageView image file user will use
+     * @param newWidth width of this map
+     * @param newHeight height of the map
      */
     public Character(final ImageView imageView, final int newWidth, final int newHeight) {
         imageView.setX(offsetX);
@@ -51,7 +53,7 @@ public class Character extends Group {
                     this.setTranslateX(this.getTranslateX() - 1);
                 }
             }
-            System.out.println(getTranslateX()+ "," + getTranslateY());
+            System.out.println(getTranslateX() + "," + getTranslateY());
         }
     }
 

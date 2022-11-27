@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.termproject.mazerunner.view;
 
 import ca.bcit.comp2522.termproject.mazerunner.model.Character;
+import ca.bcit.comp2522.termproject.mazerunner.model.Map;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ public class Game {
     private Image pokemon;
     private ImageView imageView;
     private Character player;
+    private Map map;
 
     private  final int appWidth = 1000;
     private  final int appHeight = 1000;
@@ -61,8 +63,9 @@ public class Game {
         this.selectionStage.hide();
         this.pokemon = new Image(pokemonName + ".png", true);
         this.imageView = new ImageView(pokemon);
-        this.player = new Character(imageView);
-        root.getChildren().addAll(player);
+        this.player = new Character(imageView, appWidth, appHeight);
+        this.map = new Map(appWidth, appHeight);
+        root.getChildren().addAll(player, map);
         gameStage.show();
     }
 

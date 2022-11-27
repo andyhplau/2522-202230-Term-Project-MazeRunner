@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.termproject.mazerunner.model;
 
 import java.util.Objects;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Represents a coordinate in the map.
@@ -8,7 +11,7 @@ import java.util.Objects;
  * @author Andy & Soo
  * @version 202230
  */
-public class Coordinate {
+public class Coordinate extends Group {
     /**
      * A constant width for a coordinate.
      */
@@ -26,6 +29,9 @@ public class Coordinate {
      */
     protected boolean accessible = true;
 
+    private final Image block = new Image("Brick_Block.png", true);
+    private final ImageView blockView = new ImageView(block);
+
     /**
      * Constructs a Coordinate object in the map.
      *
@@ -35,6 +41,12 @@ public class Coordinate {
     public Coordinate(final int xCoordinate, final int yCoordinate) {
         this.xCoordinate = xCoordinate * COORDINATE_WIDTH;
         this.yCoordinate = yCoordinate * COORDINATE_WIDTH;
+
+        blockView.setFitWidth(COORDINATE_WIDTH);
+        blockView.setFitHeight(COORDINATE_WIDTH);
+        blockView.setX(this.xCoordinate);
+        blockView.setY(this.yCoordinate);
+        blockView.setVisible(false);
     }
 
     /**
@@ -56,6 +68,15 @@ public class Coordinate {
     }
 
     /**
+     * Returns blockView.
+     *
+     * @return yCoordinate as an int
+     */
+    public ImageView getBlockView() {
+        return blockView;
+    }
+
+    /**
      * Returns if the coordinate is accessible for the character.
      *
      * @return accessible as a boolean
@@ -71,6 +92,7 @@ public class Coordinate {
      */
     public void setAccessible(final boolean accessible) {
         this.accessible = accessible;
+        blockView.setVisible(!accessible);
     }
 
     /**
