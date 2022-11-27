@@ -9,9 +9,22 @@ import java.util.Objects;
  * @version 202230
  */
 public class Coordinate {
-    private final int xCoordinate;
-    private final int yCoordinate;
-    private boolean accessible;
+    /**
+     * A constant width for a coordinate.
+     */
+    public static final int COORDINATE_WIDTH = 50;
+    /**
+     * Represents an x-coordinate in the map.
+     */
+    protected final int xCoordinate;
+    /**
+     * Represents a y-coordinate in the map.
+     */
+    protected final int yCoordinate;
+    /**
+     * Represents if the Coordinate object is accessible for the character.
+     */
+    protected boolean accessible;
 
     /**
      * Constructs a Coordinate object in the map.
@@ -21,8 +34,8 @@ public class Coordinate {
      * @param accessible a boolean that represents if this coordinate is accessible for the character
      */
     public Coordinate(final int xCoordinate, final int yCoordinate, final boolean accessible) {
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+        this.xCoordinate = xCoordinate * COORDINATE_WIDTH;
+        this.yCoordinate = yCoordinate * COORDINATE_WIDTH;
         this.accessible = accessible;
     }
 
@@ -63,7 +76,7 @@ public class Coordinate {
     }
 
     /**
-     * Compare an object with an AdditionOperation object.
+     * Compare an object with a Coordinate object.
      *
      * @param obj an object
      * @return true if they are the same, else false
