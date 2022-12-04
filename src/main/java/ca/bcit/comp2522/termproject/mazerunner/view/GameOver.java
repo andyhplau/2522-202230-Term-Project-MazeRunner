@@ -60,14 +60,10 @@ public class GameOver {
         final Font buttonFont = Font.font(20);
         Button playAgainButton = new Button("Start Again!");
         playAgainButton.setFont(buttonFont);
-//        playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(final ActionEvent actionEvent) {
-//                Game newGame = new Game();
-//                newGame.createNewGame(gameStage, "pikachu");
-//                newGame.startCountTime();
-//            }
-//        });
+        playAgainButton.setOnAction(actionEvent -> {
+            CharacterDecision decision = new CharacterDecision();
+            decision.decideCharacter(stage);
+        });
         StackPane bottomPane = new StackPane(playAgainButton);
         bottomPane.setStyle("-fx-alignment: center;" + "-fx-background-color: lightblue;");
         bottomPane.setPrefHeight(bottomHeight);
