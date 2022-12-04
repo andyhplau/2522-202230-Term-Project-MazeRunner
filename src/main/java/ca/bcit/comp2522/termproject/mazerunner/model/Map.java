@@ -111,7 +111,6 @@ public class Map extends Group {
         StringInt.put(2, "two");
         StringInt.put(3, "three");
 
-        System.out.println("Destination: " + randomNum);
         for (Destination destination : destinations) {
             if (destination.getDestinationNum().equals(StringInt.get(randomNum))) {
                 destination.setChosen(true);
@@ -137,5 +136,62 @@ public class Map extends Group {
             }
         }
         return accessibility;
+    }
+
+    /**
+     * Compare an object with a Map object.
+     *
+     * @param o an object
+     * @return true if they are the same, else false
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Map map = (Map) o;
+
+        if (xSize != map.xSize) {
+            return false;
+        }
+        if (ySize != map.ySize) {
+            return false;
+        }
+        if (!coordinates.equals(map.coordinates)) {
+            return false;
+        }
+
+        return destinations.equals(map.destinations);
+    }
+
+    /**
+     * Returns a hashCode for this instance of the Map class.
+     *
+     * @return HashCode as an int
+     */
+    @Override
+    public int hashCode() {
+        int result = xSize;
+        final int hashValue = 33;
+        result = hashValue * result + ySize;
+        result = hashValue * result + boxSize;
+        result = hashValue * result + coordinates.hashCode();
+        result = hashValue * result + destinations.hashCode();
+        return result;
+    }
+
+    /**
+     * Returns a String representation of this Map object.
+     *
+     * @return description of this Map object
+     */
+    @Override
+    public String toString() {
+        return "Map{" +  "xSize=" + xSize + ", ySize=" + ySize + ", boxSize=" + boxSize + ", coordinates="
+                + coordinates + ", destinations=" + destinations + '}';
     }
 }
