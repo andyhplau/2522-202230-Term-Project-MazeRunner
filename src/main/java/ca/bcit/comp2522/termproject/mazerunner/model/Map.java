@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.termproject.mazerunner.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
 import javafx.scene.Group;
 
 /**
@@ -95,6 +98,25 @@ public class Map extends Group {
                 new Destination(xCoordinate * boxSize, yCoordinate * boxSize, number);
         destinations.add(thisDestination);
         getChildren().add(thisDestination.getNumView());
+    }
+
+    /**
+     * Set one destination randomly between three destinations.
+     */
+    public void chooseDestination() {
+        Random random = new Random();
+        int randomNum = random.nextInt(1, 4);
+        HashMap<Integer, String> StringInt = new HashMap<>();
+        StringInt.put(1, "one");
+        StringInt.put(2, "two");
+        StringInt.put(3, "three");
+
+        System.out.println("Destination: " + randomNum);
+        for (Destination destination : destinations) {
+            if (destination.getDestinationNum().equals(StringInt.get(randomNum))) {
+                destination.setChosen(true);
+            }
+        }
     }
 
     /**

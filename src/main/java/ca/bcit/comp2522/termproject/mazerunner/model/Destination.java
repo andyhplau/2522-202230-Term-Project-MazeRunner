@@ -16,6 +16,7 @@ public class Destination extends Coordinate {
 
     private boolean chosen;
     private final ImageView numView;
+    private final String destinationNum;
 
     /**
      * Constructs a Destination object in the map.
@@ -27,12 +28,14 @@ public class Destination extends Coordinate {
     public Destination(final int xCoordinate, final int yCoordinate, final String number) {
         super(xCoordinate, yCoordinate);
         this.chosen = false;
+        this.destinationNum = number;
         Image num = new Image(number + ".png", true);
         numView = new ImageView(num);
         numView.setFitWidth(Coordinate.COORDINATE_WIDTH);
         numView.setFitHeight(Coordinate.COORDINATE_WIDTH);
         numView.setX(xCoordinate);
         numView.setY(yCoordinate);
+        numView.setVisible(false);
     }
 
     /**
@@ -54,12 +57,22 @@ public class Destination extends Coordinate {
     }
 
     /**
+     * Returns if the DestinationNum as a String.
+     *
+     * @return destinationNum as a String
+     */
+    public String getDestinationNum() {
+        return destinationNum;
+    }
+
+    /**
      * Updates the chosen value.
      *
      * @param chosen a boolean represents if the destination is chosen by the user
      */
     public void setChosen(final boolean chosen) {
         this.chosen = chosen;
+        numView.setVisible(chosen);
     }
 
     /**

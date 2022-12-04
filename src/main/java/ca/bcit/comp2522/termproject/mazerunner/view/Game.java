@@ -80,10 +80,11 @@ public class Game {
             map.setPath(ints[0], ints[1]);
         }
 
-        // Set three destinations
+        // Set three destinations and choose one between them
         map.setDestination(19, 3, "one");
         map.setDestination(10, 10, "two");
         map.setDestination(7, 17, "three");
+        map.chooseDestination();
     }
 
     /**
@@ -105,7 +106,7 @@ public class Game {
         ImageView imageView = new ImageView(pokemon);
         this.map = new Map(appWidth, appHeight);
         this.player = new Character(imageView, appWidth, appHeight, this.map);
-        mapPane.getChildren().addAll(player, map);
+        mapPane.getChildren().addAll(map, player);
         drawMap();
         gameStage.show();
     }
@@ -114,7 +115,7 @@ public class Game {
      * Initiates game stage.
      */
     public void initiateStage() {
-        timer = new Timer(5);
+        timer = new Timer(100);
         mapPane = new Group();
         BorderPane root = new BorderPane();
         root.setTop(timer.getTimerPane());
