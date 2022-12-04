@@ -68,6 +68,11 @@ public class Timer {
         this.time = time;
     }
 
+    /**
+     * Sets the gameStage from the Game Class.
+     *
+     * @param gameStage the gameStage from Game class as a Stage
+     */
     public void setStage(final Stage gameStage) {
         this.gameStage = gameStage;
     }
@@ -105,7 +110,7 @@ public class Timer {
             if (time <= 0) {
                 timeline.stop();
                 GameOver gameOver = new GameOver();
-                gameOver.gameIsOver(gameStage);
+                gameOver.endGame(gameStage);
             }
         }
     }
