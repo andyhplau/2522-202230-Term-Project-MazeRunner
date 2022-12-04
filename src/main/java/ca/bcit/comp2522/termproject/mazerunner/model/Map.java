@@ -106,13 +106,13 @@ public class Map extends Group {
     public void chooseDestination() {
         Random random = new Random();
         int randomNum = random.nextInt(1, 4);
-        HashMap<Integer, String> StringInt = new HashMap<>();
-        StringInt.put(1, "one");
-        StringInt.put(2, "two");
-        StringInt.put(3, "three");
+        HashMap<Integer, String> stringInt = new HashMap<>();
+        stringInt.put(1, "one");
+        stringInt.put(2, "two");
+        stringInt.put(3, "three");
 
         for (Destination destination : destinations) {
-            if (destination.getDestinationNum().equals(StringInt.get(randomNum))) {
+            if (destination.getDestinationNum().equals(stringInt.get(randomNum))) {
                 destination.setChosen(true);
             }
         }
