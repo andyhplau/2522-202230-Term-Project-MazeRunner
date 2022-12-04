@@ -1,17 +1,11 @@
 package ca.bcit.comp2522.termproject.mazerunner.view;
 
-import ca.bcit.comp2522.termproject.mazerunner.model.Character;
-import ca.bcit.comp2522.termproject.mazerunner.view.Game;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -25,74 +19,97 @@ import javafx.stage.Stage;
  * @author Andy & Soo
  * @version 202230
  */
-public class CharacterDecision extends Application {
+public class CharacterDecision {
 
     private static final Font BUTTON_FONT = Font.font(20);
+    private static final int PREF_HEIGHT = 50;
+    private static final int APP_WIDTH = 600;
+    private static final int APP_HEIGHT = 650;
     private String chosenCharacter = "Pikachu";
+    private StackPane titlePane;
+    private StackPane optionPane;
+    private StackPane navPane;
+    //    private Stage driverStage;
+    private final Stage stage;
+
+    /**
+     * Constructs the CharacterDecision object.
+     */
+    public CharacterDecision() {
+        BorderPane root = new BorderPane();
+
+        setUpTitle();
+        root.setTop(titlePane);
+
+        setUpOption();
+        root.setCenter(optionPane);
+
+        setUpNav();
+        root.setBottom(navPane);
+
+        // Setup the scene
+        Scene scene = new Scene(root, APP_WIDTH, APP_HEIGHT);
+
+        // Setup the stage
+        stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Maze Runner");
+        stage.show();
+    }
 
     /*
     Sets up the image buttons.
      */
     private void setUpImageButton(final RadioButton button, final String pokemon, final ToggleGroup group) {
-        final int height = 150;
-        final int width = 150;
-        Image image = new Image(pokemon + ".png", width, height, true, true);
+        final int imageHeight = 150;
+        final int imageWidth = 150;
+        Image image = new Image(pokemon + ".png", imageWidth, imageHeight, true, true);
         button.setFont(BUTTON_FONT);
         button.setGraphic(new ImageView(image));
         button.setToggleGroup(group);
     }
 
-    /**
-     * Creates the page for character decision.
-     *
-     * @param stage a Stage
-     */
-    @Override
-    public void start(final Stage stage) {
-        // declare the variables for size, spacing, width, height
-        final int titleFontSize = 30;
-        final int buttonSpacing = 30;
-        final int screenWidth = 600;
-        final int screenHeight = 650;
-        final int prefHeight = 50;
-        final double anchorSize = 30.0;
 
-        // Construct the title pane
+    /**
+     * Changes the stage to this stage.
+     *
+     * @param driverStage a previous stage as a Stage
+     */
+    public void decideCharacter(final Stage driverStage) {
+//        this.driverStage = driverStage;
+        driverStage.hide();
+        stage.show();
+    }
+
+
+    private void setUpTitle() {
+        final int titleFontSize = 30;
+
+
         Text title = new Text("Choose your own Character!");
         title.setFont(Font.font(titleFontSize));
-        StackPane titlePane = new StackPane(title);
+        titlePane = new StackPane(title);
         titlePane.setStyle("-fx-alignment: center;" + "-fx-background-color: lightblue;");
-        titlePane.setPrefHeight(prefHeight);
+        titlePane.setPrefHeight(PREF_HEIGHT);
+    }
 
-        // Construct the option pane
+
+    private void setUpOption() {
+        final int buttonSpacing = 30;
+
         final ToggleGroup characters = new ToggleGroup();
 
         RadioButton pikachuButton = new RadioButton("Pikachu");
         pikachuButton.setSelected(true);
-        pikachuButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(final ActionEvent selectCharacter) {
-                chosenCharacter = "Pikachu";
-            }
-        });
+        pikachuButton.setOnAction(selectCharacter -> chosenCharacter = "Pikachu");
         pikachuButton.setToggleGroup(characters);
 
         RadioButton squirtleButton = new RadioButton("Squirtle");
-        squirtleButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(final ActionEvent selectCharacter) {
-                chosenCharacter = "Squirtle";
-            }
-        });
+        squirtleButton.setOnAction(selectCharacter -> chosenCharacter = "Squirtle");
         squirtleButton.setToggleGroup(characters);
 
         RadioButton meowthButton = new RadioButton("Meowth");
-        meowthButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(final ActionEvent selectCharacter) {
-                chosenCharacter = "Meowth";
-            }
-        });
+        meowthButton.setOnAction(selectCharacter -> chosenCharacter = "Meowth");
         meowthButton.setToggleGroup(characters);
 
         RadioButton userPictureButton;
@@ -102,51 +119,21 @@ public class CharacterDecision extends Application {
         VBox options = new VBox(buttonSpacing);
         options.getChildren().addAll(pikachuButton, squirtleButton, meowthButton);
         options.setStyle("-fx-background-color: lightblue;" + "-fx-alignment: center");
-        StackPane optionPane = new StackPane(options);
-
-        // Construct the nav pane
-        Button back = new Button("Go Back!");
-        back.setFont(BUTTON_FONT);
-        Button start = new Button("Start the Game!");
-        start.setFont(BUTTON_FONT);
-        start.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(final ActionEvent actionEvent) {
-                Game newGame = new Game();
-                newGame.createNewGame(stage, chosenCharacter);
-                newGame.startCountTime();
-            }
-        });
-
-        AnchorPane navPane = new AnchorPane(back, start);
-        navPane.setStyle("-fx-background-color: lightblue;");
-        navPane.setPrefHeight(prefHeight);
-        AnchorPane.setBottomAnchor(back, anchorSize);
-        AnchorPane.setLeftAnchor(back, anchorSize);
-        AnchorPane.setBottomAnchor(start, anchorSize);
-        AnchorPane.setRightAnchor(start, anchorSize);
-
-        // Construct the border pane - root
-        BorderPane root = new BorderPane();
-        root.setTop(titlePane);
-        root.setCenter(optionPane);
-        root.setBottom(navPane);
-
-        // Setup the scene
-        Scene scene = new Scene(root, screenWidth, screenHeight);
-
-        // Setup the stage
-        stage.setScene(scene);
-        stage.setTitle("Maze Runner");
-        stage.show();
+        optionPane = new StackPane(options);
     }
 
-    /**
-     * Launches the JavaFX application.
-     *
-     * @param args command line arguments
-     */
-    public static void main(final String[] args) {
-        launch(args);
+
+    private void setUpNav() {
+        Button start = new Button("Start the Game!");
+        start.setFont(BUTTON_FONT);
+        start.setOnAction(actionEvent -> {
+            Game newGame = new Game();
+            newGame.createNewGame(stage, chosenCharacter);
+            newGame.startCountTime();
+        });
+
+        navPane = new StackPane(start);
+        navPane.setStyle("-fx-background-color: lightblue;" + "-fx-alignment: center");
+        navPane.setPrefHeight(PREF_HEIGHT);
     }
 }

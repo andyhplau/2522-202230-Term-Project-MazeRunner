@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.termproject.mazerunner.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -23,7 +21,6 @@ public class GameOver {
     private static final int APP_HEIGHT = 650;
     private final BorderPane root;
     private final Stage stage;
-    private Stage gameStage;
 
 
     /**
@@ -83,8 +80,7 @@ public class GameOver {
      * @param gameStage the game stage which will be hided as a Stage
      */
     public void gameIsOver(final Stage gameStage) {
-        this.gameStage = gameStage;
-        this.gameStage.hide();
+        gameStage.hide();
         stage.show();
     }
 

@@ -24,17 +24,12 @@ public class Game {
     public static final int JUMP = 5;
     private Timer timer;
     private Group mapPane;
-    private BorderPane root;
     private Stage gameStage;
-    private Image pokemon;
-    private ImageView imageView;
     private Character player;
     private Map map;
 
     private final int appWidth = 600;
     private final int appHeight = 600;
-
-    private Stage selectionStage;
 
     /**
      * Constructs new game stage.
@@ -105,10 +100,9 @@ public class Game {
      * @param pokemonName name of character user chose
      */
     public void createNewGame(final Stage selectionStage, final String pokemonName) {
-        this.selectionStage = selectionStage;
-        this.selectionStage.hide();
-        this.pokemon = new Image(pokemonName + ".png", true);
-        this.imageView = new ImageView(pokemon);
+        selectionStage.hide();
+        Image pokemon = new Image(pokemonName + ".png", true);
+        ImageView imageView = new ImageView(pokemon);
         this.map = new Map(appWidth, appHeight);
         this.player = new Character(imageView, appWidth, appHeight, this.map);
         mapPane.getChildren().addAll(player, map);
@@ -122,7 +116,7 @@ public class Game {
     public void initiateStage() {
         timer = new Timer(5);
         mapPane = new Group();
-        root = new BorderPane();
+        BorderPane root = new BorderPane();
         root.setTop(timer.getTimerPane());
         root.setCenter(mapPane);
         Scene gameScene = new Scene(root, appWidth, appHeight + 50);
