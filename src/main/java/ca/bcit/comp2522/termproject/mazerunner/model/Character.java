@@ -3,6 +3,9 @@ package ca.bcit.comp2522.termproject.mazerunner.model;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Create character user will use.
  *
@@ -47,10 +50,19 @@ public class Character extends Group {
     }
 
     /**
-     * Get this game's destination from Map class.
+     * Set this game's destination from Map class.
      */
     public void setDestination() {
         this.chosenDestination = map.getChosenDestination();
+    }
+
+    /**
+     * Get this game's destination from Map class.
+     *
+     * @return status of character if it reaches the destination or not as a boolean
+     */
+    public boolean isReachDestination() {
+        return reachDestination;
     }
 
     /**
@@ -66,21 +78,18 @@ public class Character extends Group {
                         && map.findAccessibility(getTranslateX() + width + offsetX, getTranslateY() + offsetY)
                         && getTranslateY() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateX(this.getTranslateX() + 1);
-                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             } else {
                 if (getTranslateX() > -offsetX
                         && map.findAccessibility(getTranslateX() + offsetX - 1, getTranslateY() + offsetY)
                         && getTranslateY() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateX(this.getTranslateX() - 1);
-                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             }
         }
         if (getTranslateX() + offsetX == chosenDestination[0] && getTranslateY() + offsetY == chosenDestination[1]) {
             reachDestination = true;
         }
-        System.out.println(reachDestination);
     }
 
     /**
@@ -96,21 +105,18 @@ public class Character extends Group {
                         && map.findAccessibility(getTranslateX() + offsetX, getTranslateY() + offsetY + height)
                         && getTranslateX() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateY(this.getTranslateY() + 1);
-                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             } else {
                 if (getTranslateY() > -offsetY
                         && map.findAccessibility(getTranslateX() + offsetX, getTranslateY() + offsetY - 1)
                         && getTranslateX() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateY(this.getTranslateY() - 1);
-                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             }
         }
         if (getTranslateX() + offsetX == chosenDestination[0] && getTranslateY() + offsetY == chosenDestination[1]) {
             reachDestination = true;
         }
-        System.out.println(reachDestination);
     }
 
     /**
@@ -130,25 +136,19 @@ public class Character extends Group {
 
         Character character = (Character) o;
 
-        if (offsetX != character.offsetX) {
-            return false;
-        }
-        if (offsetY != character.offsetY) {
-            return false;
-        }
-        if (width != character.width) {
-            return false;
-        }
-        if (height != character.height) {
-            return false;
-        }
         if (appWidth != character.appWidth) {
             return false;
         }
         if (appHeight != character.appHeight) {
             return false;
         }
-        return map.equals(character.map);
+        if (reachDestination != character.reachDestination) {
+            return false;
+        }
+        if (!Objects.equals(map, character.map)) {
+            return false;
+        }
+        return Arrays.equals(chosenDestination, character.chosenDestination);
     }
 
     /**
@@ -158,14 +158,16 @@ public class Character extends Group {
      */
     @Override
     public int hashCode() {
-        final int hashValue = 32;
         int result = offsetX;
+        final int hashValue = 35;
         result = hashValue * result + offsetY;
         result = hashValue * result + width;
         result = hashValue * result + height;
         result = hashValue * result + appWidth;
         result = hashValue * result + appHeight;
-        result = hashValue * result + map.hashCode();
+        result = hashValue * result + (map != null ? map.hashCode() : 0);
+        result = hashValue * result + Arrays.hashCode(chosenDestination);
+        result = hashValue * result + (reachDestination ? 1 : 0);
         return result;
     }
 
@@ -177,6 +179,7 @@ public class Character extends Group {
     @Override
     public String toString() {
         return "Character{" + "offsetX=" + offsetX + ", offsetY=" + offsetY + ", width=" + width + ", height=" + height
-                + ", appWidth=" + appWidth + ", appHeight=" + appHeight + ", map=" + map + '}';
+                + ", appWidth=" + appWidth + ", appHeight=" + appHeight + ", map=" + map + ", chosenDestination="
+                + Arrays.toString(chosenDestination) + ", reachDestination=" + reachDestination + '}';
     }
 }

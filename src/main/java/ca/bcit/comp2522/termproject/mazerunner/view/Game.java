@@ -50,6 +50,10 @@ public class Game {
             case LEFT -> player.moveX(-JUMP);
             default -> { }
         }
+
+        if(player.isReachDestination()) {
+            System.out.println("You are win!");
+        }
     }
 
     private void drawMap() {
