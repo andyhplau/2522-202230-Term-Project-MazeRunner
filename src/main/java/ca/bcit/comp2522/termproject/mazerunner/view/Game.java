@@ -108,6 +108,7 @@ public class Game {
         this.player = new Character(imageView, appWidth, appHeight, this.map);
         mapPane.getChildren().addAll(map, player);
         drawMap();
+        player.setDestination();
         gameStage.show();
     }
 

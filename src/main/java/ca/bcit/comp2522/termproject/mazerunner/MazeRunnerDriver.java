@@ -9,6 +9,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+//import javafx.scene.media.Media;
+
 /**
  * Starts as the landing page.
  *
@@ -60,6 +62,14 @@ public class MazeRunnerDriver extends Application {
         stage.setTitle("Maze Runner");
         stage.show();
     }
+
+//    Media mediaPlayer;
+//    public void music() {
+//        String title = "Run-Amok.mp3";
+//        Media h = new  Media(Paths.get(title).toUri().toString());
+//        mediaPlayer = new MediaPlayer(h);
+//        mediaPlayer.play();
+//    }
 
     /**
      * Launches the JavaFX application.

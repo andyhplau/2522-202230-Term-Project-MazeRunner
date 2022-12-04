@@ -95,7 +95,7 @@ public class Map extends Group {
      */
     public void setDestination(final int xCoordinate, final int yCoordinate, final String number) {
         Destination thisDestination =
-                new Destination(xCoordinate * boxSize, yCoordinate * boxSize, number);
+                new Destination(xCoordinate, yCoordinate, number);
         destinations.add(thisDestination);
         getChildren().add(thisDestination.getNumView());
     }
@@ -116,6 +116,21 @@ public class Map extends Group {
                 destination.setChosen(true);
             }
         }
+    }
+
+    /**
+     * Get coordinate of chosen destination.
+     *
+     * @return coordinate of chosen destination as list of int, if destination is not chosen yet, return {0, 0}
+     */
+    public int [] getChosenDestination() {
+        int [] chosenDestination = {0, 0};
+        for (Destination destination : destinations) {
+            if (destination.isChosen()) {
+                chosenDestination = new int[]{destination.getXCoordinate(), destination.getYCoordinate()};
+            }
+        }
+        return chosenDestination;
     }
 
     /**

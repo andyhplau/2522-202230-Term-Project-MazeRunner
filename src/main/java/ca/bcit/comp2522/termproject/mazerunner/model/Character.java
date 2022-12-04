@@ -23,6 +23,8 @@ public class Character extends Group {
     private final int appHeight;
 
     private final Map map;
+    private int[] chosenDestination;
+    private boolean reachDestination;
 
     /**
      * Constructs the character user will use.
@@ -45,6 +47,13 @@ public class Character extends Group {
     }
 
     /**
+     * Get this game's destination from Map class.
+     */
+    public void setDestination() {
+        this.chosenDestination = map.getChosenDestination();
+    }
+
+    /**
      * Modifies the x-position of the image.
      *
      * @param x number of movement of x coordinate
@@ -57,16 +66,21 @@ public class Character extends Group {
                         && map.findAccessibility(getTranslateX() + width + offsetX, getTranslateY() + offsetY)
                         && getTranslateY() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateX(this.getTranslateX() + 1);
+                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             } else {
                 if (getTranslateX() > -offsetX
                         && map.findAccessibility(getTranslateX() + offsetX - 1, getTranslateY() + offsetY)
                         && getTranslateY() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateX(this.getTranslateX() - 1);
+                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             }
         }
-
+        if (getTranslateX() + offsetX == chosenDestination[0] && getTranslateY() + offsetY == chosenDestination[1]) {
+            reachDestination = true;
+        }
+        System.out.println(reachDestination);
     }
 
     /**
@@ -82,15 +96,21 @@ public class Character extends Group {
                         && map.findAccessibility(getTranslateX() + offsetX, getTranslateY() + offsetY + height)
                         && getTranslateX() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateY(this.getTranslateY() + 1);
+                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             } else {
                 if (getTranslateY() > -offsetY
                         && map.findAccessibility(getTranslateX() + offsetX, getTranslateY() + offsetY - 1)
                         && getTranslateX() % Coordinate.COORDINATE_WIDTH == 0) {
                     this.setTranslateY(this.getTranslateY() - 1);
+                    System.out.println("(" + getTranslateX() + ", " + getTranslateY() + ")");
                 }
             }
         }
+        if (getTranslateX() + offsetX == chosenDestination[0] && getTranslateY() + offsetY == chosenDestination[1]) {
+            reachDestination = true;
+        }
+        System.out.println(reachDestination);
     }
 
     /**

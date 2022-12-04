@@ -33,8 +33,8 @@ public class Destination extends Coordinate {
         numView = new ImageView(num);
         numView.setFitWidth(Coordinate.COORDINATE_WIDTH);
         numView.setFitHeight(Coordinate.COORDINATE_WIDTH);
-        numView.setX(xCoordinate);
-        numView.setY(yCoordinate);
+        numView.setX(xCoordinate * Coordinate.COORDINATE_WIDTH);
+        numView.setY(yCoordinate * Coordinate.COORDINATE_WIDTH);
         numView.setVisible(false);
     }
 
