@@ -58,6 +58,9 @@ public class MazeRunnerDriver extends Application {
         Button exit = new Button("Exit");
         exit.setFont(BUTTON_FONT_SIZE);
         exit.setMinWidth(buttonWidth);
+        exit.setOnAction(actionEvent -> {
+            stage.close();
+        });
 
         VBox vBox = new VBox(spacing);
         vBox.getChildren().addAll(welcome, instruction, play, pastHistory, exit);
