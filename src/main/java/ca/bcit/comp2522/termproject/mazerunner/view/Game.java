@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.mazerunner.view;
 
+import ca.bcit.comp2522.termproject.mazerunner.MazeRunnerDriver;
 import ca.bcit.comp2522.termproject.mazerunner.model.Character;
 import ca.bcit.comp2522.termproject.mazerunner.model.Map;
 import ca.bcit.comp2522.termproject.mazerunner.model.Timer;
@@ -110,6 +111,8 @@ public class Game {
         ImageView imageView = new ImageView(pokemon);
         this.map = new Map(appWidth, appHeight);
         this.player = new Character(imageView, appWidth, appHeight, this.map);
+        MazeRunnerDriver.introMusicOff();
+        MazeRunnerDriver.gameMusicOn();
         mapPane.getChildren().addAll(map, player);
         drawMap();
         player.setDestination();
