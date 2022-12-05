@@ -9,6 +9,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Objects;
 
 /**
  * Represents a page when the game ends.
@@ -17,21 +22,13 @@ import javafx.stage.Stage;
  * @version 202230
  */
 public class EndGame {
-    /**
-     * Default app screen width.
-     */
     private static final int APP_WIDTH = 600;
-    /**
-     * Default app screen height.
-     */
     private static final int APP_HEIGHT = 650;
-    /**
-     * The Pane to pass to scene the hold all the panes.
-     */
+//    /**
+//     * The time user spent in the game.
+//     */
+//    protected int time = 100;
     private final BorderPane root;
-    /**
-     * The stage to project.
-     */
     private final Stage stage;
 
     /**
@@ -82,8 +79,29 @@ public class EndGame {
      *
      * @param gameStage the game stage which will be hided as a Stage
      */
-    public void endGame(final Stage gameStage) {
+    public void endGame(final Stage gameStage, final boolean win, final int destination, final int time) {
+        try {
+            save(win, destination, time);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         gameStage.hide();
         stage.show();
+    }
+
+    private void save(final boolean win, final int destination, final int time) throws IOException {
+        String text;
+        Path path = Path.of("./src/main/resources/save.txt");
+        if (win) {
+            text = "Won! You spent " + time + "s to get to destination " + destination + ".";
+        } else {
+            text = "Lost!";
+        }
+        try {
+            Files.write(path, text.getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException ex) {
+            Files.createFile(path.getParent().resolve("save.txt"));
+            Files.write(path, text.getBytes(), StandardOpenOption.APPEND);
+        }
     }
 }

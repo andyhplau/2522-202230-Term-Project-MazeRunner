@@ -102,8 +102,10 @@ public class Map extends Group {
 
     /**
      * Set one destination randomly between three destinations.
+     *
+     * @return the destination choice as an int
      */
-    public void chooseDestination() {
+    public int chooseDestination() {
         Random random = new Random();
         int randomNum = random.nextInt(1, 4);
         HashMap<Integer, String> stringInt = new HashMap<>();
@@ -116,6 +118,7 @@ public class Map extends Group {
                 destination.setChosen(true);
             }
         }
+        return randomNum;
     }
 
     /**

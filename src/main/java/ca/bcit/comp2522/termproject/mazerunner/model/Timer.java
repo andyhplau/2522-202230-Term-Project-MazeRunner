@@ -110,7 +110,7 @@ public class Timer {
             if (time <= 0) {
                 timeline.stop();
                 GameOver gameOver = new GameOver();
-                gameOver.endGame(gameStage);
+                gameOver.endGame(gameStage, false, 0, time);
             }
         }
     }

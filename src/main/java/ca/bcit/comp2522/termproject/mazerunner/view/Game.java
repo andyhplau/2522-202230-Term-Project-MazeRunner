@@ -1,6 +1,5 @@
 package ca.bcit.comp2522.termproject.mazerunner.view;
 
-import ca.bcit.comp2522.termproject.mazerunner.MazeRunnerDriver;
 import ca.bcit.comp2522.termproject.mazerunner.model.Character;
 import ca.bcit.comp2522.termproject.mazerunner.model.Map;
 import ca.bcit.comp2522.termproject.mazerunner.model.Timer;
@@ -10,11 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-import java.nio.file.Paths;
 
 /**
  * Start the game with selected character.
@@ -56,7 +51,7 @@ public class Game {
             default -> { }
         }
 
-        if (player.isReachDestination()) {
+        if(player.isReachDestination()) {
             System.out.println("You are win!");
         }
     }
@@ -115,8 +110,6 @@ public class Game {
         ImageView imageView = new ImageView(pokemon);
         this.map = new Map(appWidth, appHeight);
         this.player = new Character(imageView, appWidth, appHeight, this.map);
-        MazeRunnerDriver.introMusicOff();
-        MazeRunnerDriver.gameMusicOn();
         mapPane.getChildren().addAll(map, player);
         drawMap();
         player.setDestination();
