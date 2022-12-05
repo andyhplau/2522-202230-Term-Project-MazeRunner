@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.mazerunner;
 
+import ca.bcit.comp2522.termproject.mazerunner.model.History;
 import ca.bcit.comp2522.termproject.mazerunner.view.CharacterDecision;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -54,6 +55,10 @@ public class MazeRunnerDriver extends Application {
         Button pastHistory = new Button("Past History");
         pastHistory.setFont(BUTTON_FONT_SIZE);
         pastHistory.setMinWidth(buttonWidth);
+        pastHistory.setOnAction(actionEvent -> {
+            History history = new History();
+            history.readRecord(stage);
+        });
 
         Button exit = new Button("Exit");
         exit.setFont(BUTTON_FONT_SIZE);

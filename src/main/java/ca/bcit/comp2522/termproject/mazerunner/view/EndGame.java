@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.Objects;
 
 /**
  * Represents a page when the game ends.
@@ -24,10 +23,6 @@ import java.util.Objects;
 public class EndGame {
     private static final int APP_WIDTH = 600;
     private static final int APP_HEIGHT = 650;
-//    /**
-//     * The time user spent in the game.
-//     */
-//    protected int time = 100;
     private final BorderPane root;
     private final Stage stage;
 
