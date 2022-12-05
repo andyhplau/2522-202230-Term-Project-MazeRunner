@@ -22,8 +22,10 @@ import java.nio.file.Paths;
 public class MazeRunnerDriver extends Application {
     private static final Font TEXT_FONT_SIZE = Font.font(30);
     private static final Font BUTTON_FONT_SIZE = Font.font(20);
-    static MediaPlayer introMusic;
-    static MediaPlayer gameMusic;
+    private static MediaPlayer introMusic;
+    private static MediaPlayer gameMusic;
+    private static MediaPlayer gameOver;
+    private static MediaPlayer gameWin;
 
     /**
      * Starts the program.
@@ -62,7 +64,6 @@ public class MazeRunnerDriver extends Application {
         vBox.setStyle("-fx-background-color: lightblue;" + "-fx-alignment: center");
 
         Scene scene = new Scene(vBox, screenWidth, screenHeight);
-
         introMusicOn();
         stage.setScene(scene);
         stage.setTitle("Maze Runner");
@@ -99,7 +100,39 @@ public class MazeRunnerDriver extends Application {
      * Stops the intro music.
      */
     public static void gameMusicOff() {
-        gameMusic.setAutoPlay(false);
+        gameMusic.stop();
+    }
+
+    /**
+     * Starts the game over music.
+     */
+    public static void gameOverMusicOn() {
+        String title = "src/main/resources/gameOverMusic.mp3";
+        Media song = new Media(Paths.get(title).toUri().toString());
+        gameOver = new MediaPlayer(song);
+        gameOver.play();
+    }
+    /**
+     * Stops the game over music.
+     */
+    public static void gameOverMusicOff() {
+        gameOver.stop();
+    }
+
+    /**
+     * Starts the game win music.
+     */
+    public static void gameWinMusicOn() {
+        String title = "src/main/resources/winMusic.mp3";
+        Media song = new Media(Paths.get(title).toUri().toString());
+        gameWin = new MediaPlayer(song);
+        gameWin.play();
+    }
+    /**
+     * Stops the game win music.
+     */
+    public static void gameWinMusicOff() {
+        gameWin.stop();
     }
 
     /**

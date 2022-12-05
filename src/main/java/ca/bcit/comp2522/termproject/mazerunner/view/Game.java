@@ -56,6 +56,8 @@ public class Game {
         if (player.isReachDestination()) {
             int timeSpent = TIME_LIMIT - timer.getTime();
             Win win = new Win(timeSpent);
+            MazeRunnerDriver.gameMusicOff();
+            MazeRunnerDriver.gameWinMusicOn();
             win.endGame(gameStage, true, destination, timeSpent);
         }
     }

@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.mazerunner.model;
 
+import ca.bcit.comp2522.termproject.mazerunner.MazeRunnerDriver;
 import ca.bcit.comp2522.termproject.mazerunner.view.GameOver;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -109,6 +110,8 @@ public class Timer {
             timeText.setText("Time Left: " + time + " sec");
             if (time <= 0) {
                 timeline.stop();
+                MazeRunnerDriver.gameMusicOff();
+                MazeRunnerDriver.gameOverMusicOn();
                 GameOver gameOver = new GameOver();
                 gameOver.endGame(gameStage, false, 0, time);
             }
