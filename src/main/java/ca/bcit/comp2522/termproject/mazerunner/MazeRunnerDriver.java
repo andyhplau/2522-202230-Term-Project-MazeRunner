@@ -5,10 +5,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.nio.file.Paths;
 
 /**
  * Starts as the landing page.
@@ -19,6 +22,8 @@ import javafx.stage.Stage;
 public class MazeRunnerDriver extends Application {
     private static final Font TEXT_FONT_SIZE = Font.font(30);
     private static final Font BUTTON_FONT_SIZE = Font.font(20);
+    static MediaPlayer introMusic;
+    static MediaPlayer gameMusic;
 
     /**
      * Starts the program.
@@ -57,9 +62,44 @@ public class MazeRunnerDriver extends Application {
         vBox.setStyle("-fx-background-color: lightblue;" + "-fx-alignment: center");
 
         Scene scene = new Scene(vBox, screenWidth, screenHeight);
+
+        introMusicOn();
         stage.setScene(scene);
         stage.setTitle("Maze Runner");
         stage.show();
+    }
+
+    /**
+     * Starts the intro music.
+     */
+    public static void introMusicOn() {
+        String title = "src/main/resources/introMusic.mp3";
+        Media song = new Media(Paths.get(title).toUri().toString());
+        introMusic = new MediaPlayer(song);
+        introMusic.play();
+    }
+
+    /**
+     * Stops the intro music.
+     */
+    public static void introMusicOff() {
+        introMusic.stop();
+    }
+
+    /**
+     * Starts the game music.
+     */
+    public static void gameMusicOn() {
+        String title = "src/main/resources/gameMusic.mp3";
+        Media song = new Media(Paths.get(title).toUri().toString());
+        gameMusic = new MediaPlayer(song);
+        gameMusic.play();
+    }
+    /**
+     * Stops the intro music.
+     */
+    public static void gameMusicOff() {
+        gameMusic.setAutoPlay(false);
     }
 
     /**
