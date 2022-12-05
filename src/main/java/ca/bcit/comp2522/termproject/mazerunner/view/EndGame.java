@@ -93,9 +93,9 @@ public class EndGame {
         String text;
         Path path = Path.of("./src/main/resources/save.txt");
         if (win) {
-            text = "Won! You spent " + time + "s to get to destination " + destination + ".";
+            text = "Won! You spent " + time + "s to get to destination " + destination + ".\n";
         } else {
-            text = "Lost!";
+            text = "Lost!\n";
         }
         try {
             Files.write(path, text.getBytes(), StandardOpenOption.APPEND);

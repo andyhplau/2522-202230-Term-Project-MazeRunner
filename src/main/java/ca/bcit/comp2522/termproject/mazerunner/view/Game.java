@@ -22,13 +22,14 @@ public class Game {
     /**
      * Distance in pixels that the alien moves when a key is pressed.
      */
+    public static final int TIME_LIMIT = 100;
     public static final int JUMP = 5;
     private Timer timer;
     private Group mapPane;
     private Stage gameStage;
     private Character player;
     private Map map;
-
+    private int destination;
     private final int appWidth = 600;
     private final int appHeight = 600;
 
@@ -52,8 +53,10 @@ public class Game {
             default -> { }
         }
 
-        if(player.isReachDestination()) {
-            System.out.println("You are win!");
+        if (player.isReachDestination()) {
+            int timeSpent = TIME_LIMIT - timer.getTime();
+            Win win = new Win(timeSpent);
+            win.endGame(gameStage, true, destination, timeSpent);
         }
     }
 
@@ -89,7 +92,7 @@ public class Game {
         map.setDestination(19, 3, "one");
         map.setDestination(10, 10, "two");
         map.setDestination(7, 17, "three");
-        map.chooseDestination();
+        destination = map.chooseDestination();
     }
 
     /**
@@ -123,7 +126,7 @@ public class Game {
      * Initiates game stage.
      */
     public void initiateStage() {
-        timer = new Timer(100);
+        timer = new Timer(TIME_LIMIT);
         mapPane = new Group();
         BorderPane root = new BorderPane();
         root.setTop(timer.getTimerPane());
