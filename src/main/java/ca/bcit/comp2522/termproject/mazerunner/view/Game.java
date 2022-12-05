@@ -23,6 +23,9 @@ public class Game {
      * Distance in pixels that the alien moves when a key is pressed.
      */
     public static final int TIME_LIMIT = 100;
+    /**
+     * The character steps to move.
+     */
     public static final int JUMP = 5;
     private Timer timer;
     private Group mapPane;

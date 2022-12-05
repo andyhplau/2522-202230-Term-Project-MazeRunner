@@ -76,7 +76,6 @@ public class CharacterDecision {
      * @param driverStage a previous stage as a Stage
      */
     public void decideCharacter(final Stage driverStage) {
-//        this.driverStage = driverStage;
         driverStage.hide();
         stage.show();
     }
@@ -112,7 +111,6 @@ public class CharacterDecision {
         meowthButton.setOnAction(selectCharacter -> chosenCharacter = "Meowth");
         meowthButton.setToggleGroup(characters);
 
-        RadioButton userPictureButton;
         setUpImageButton(pikachuButton, "pikachu", characters);
         setUpImageButton(squirtleButton, "squirtle", characters);
         setUpImageButton(meowthButton, "meowth", characters);

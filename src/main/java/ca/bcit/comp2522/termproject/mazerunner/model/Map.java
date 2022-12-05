@@ -126,8 +126,8 @@ public class Map extends Group {
      *
      * @return coordinate of chosen destination as list of int, if destination is not chosen yet, return {0, 0}
      */
-    public int [] getChosenDestination() {
-        int [] chosenDestination = {0, 0};
+    public int[] getChosenDestination() {
+        int[] chosenDestination = {0, 0};
         for (Destination destination : destinations) {
             if (destination.isChosen()) {
                 chosenDestination = new int[]{destination.getXCoordinate(), destination.getYCoordinate()};

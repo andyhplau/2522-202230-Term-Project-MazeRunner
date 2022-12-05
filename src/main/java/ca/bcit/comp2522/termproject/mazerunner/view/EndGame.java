@@ -28,6 +28,11 @@ public class EndGame {
 
     /**
      * Constructs the EndGame object.
+     *
+     * @param finishMsg the msg to show if the user win or lose as a Text
+     * @param descriptionMsg the msg to describe the game as a Text
+     * @param endMsg The message to tell user what they can do next step as a Text
+     * @param playAgainButton the button to let user start the game again as a Button
      */
     public EndGame(final Text finishMsg, final Text descriptionMsg, final Text endMsg, final Button playAgainButton) {
         root = new BorderPane();
@@ -56,14 +61,22 @@ public class EndGame {
     }
 
     private void setUpNav(final Button playAgainButton) {
-        final int bottomHeight = 100;
+        final int buttonSpacing = 20;
+        final int bottomHeight = 150;
+        final int buttonWidth = 150;
         final Font buttonFont = Font.font(20);
         playAgainButton.setFont(buttonFont);
+        playAgainButton.setMinWidth(buttonWidth);
         playAgainButton.setOnAction(actionEvent -> {
             CharacterDecision decision = new CharacterDecision();
             decision.decideCharacter(stage);
         });
-        StackPane bottomPane = new StackPane(playAgainButton);
+        Button exitButton = new Button("Exit");
+        exitButton.setFont(buttonFont);
+        exitButton.setMinWidth(buttonWidth);
+        exitButton.setOnAction(actionEvent -> stage.close());
+        VBox bottomPane = new VBox(buttonSpacing);
+        bottomPane.getChildren().addAll(playAgainButton, exitButton);
         bottomPane.setStyle("-fx-alignment: center;" + "-fx-background-color: lightblue;");
         bottomPane.setPrefHeight(bottomHeight);
         root.setBottom(bottomPane);
@@ -73,6 +86,10 @@ public class EndGame {
      * Changes the game stage to endGame stage.
      *
      * @param gameStage the game stage which will be hided as a Stage
+     * @param win the boolean to tell if the user win or lose
+     * @param destination the destination of the game
+     * @param time the time user spent on the game as an int
+     * @throws RuntimeException the Exception to throw
      */
     public void endGame(final Stage gameStage, final boolean win, final int destination, final int time) {
         try {

@@ -93,7 +93,6 @@ public class History {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        System.out.println(fileContents);
         return fileContents;
     }
 }

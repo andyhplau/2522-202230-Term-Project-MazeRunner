@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
  * @author Andy & Soo
  * @version 202230
  */
-public class Win extends EndGame{
+public class Win extends EndGame {
     /**
      * Constructs the GameOver object.
      *
